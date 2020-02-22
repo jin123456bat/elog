@@ -17,4 +17,15 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+//异常上报
 Route::post('exception','ExceptionController@trigger');
+
+//日志上报
+Route::post('log','LogController@trigger');
+
+//登录接口
+Route::post('index/login','IndexController@login');
+
+Route::group(['middleware'=>[]],function(){
+	Route::post('admin/index','AdminController@index');
+});

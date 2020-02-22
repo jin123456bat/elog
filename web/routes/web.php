@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/index/login','IndexController@login');
+Route::get('/index/code','IndexController@code');
+
+Route::group(['middleware' => ['admin_auth']],function(){
+	Route::get('/', 'IndexController@index');
+	Route::get('admin/index','AdminController@index');
+	Route::get('admin/create','AdminController@create');
+	Route::get('admin/update','AdminController@update');
 });

@@ -40,4 +40,9 @@ class ExceptionController extends Controller
 		
 		return new Success('上传成功');
 	}
+	
+	function index(Request $request)
+	{
+		return view('exception.index');
+	}
 }
