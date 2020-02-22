@@ -28,4 +28,6 @@ Route::post('index/login','IndexController@login');
 
 Route::group(['middleware'=>[]],function(){
 	Route::post('admin/index','AdminController@index');
+	Route::post('admin/create','AdminController@create');
+	Route::post('admin/update','AdminController@update');
 });

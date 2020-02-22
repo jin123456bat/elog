@@ -95,10 +95,10 @@ use App\Helper\Assets;
 								<div class="form-group col-md-10">
 									<label class="label col-md-2">绑定微信</label>
 									<div class="qrcode col-md-3" style="width: 100px;">
-										<img class="gravatar" src="<?=$admin_qrcode?>" style="width: 100px;">
+										<img class="gravatar" src="<?=$qrcode?>" style="width: 100px;">
 										<div class="nickname" style="text-align: center; font-size: 12px;">微信扫描二维码</div>
 										<input type="hidden" name="wechat_info" value="">
-										<button data-image="<?=$admin_qrcode?>" class="button button-xs col-md-10 wechat_bind_delete display-none" style="margin: 5px 0px;">解除绑定</button>
+										<button data-image="<?=$qrcode?>" class="button button-xs col-md-10 wechat_bind_delete display-none" style="margin: 5px 0px;">解除绑定</button>
 									</div>
 								</div>
 							</div>
@@ -116,22 +116,22 @@ use App\Helper\Assets;
 	</div>
 	@include('common.footer')
 <!-- 通用js -->
-<script type="text/javascript" src="<?=Assets::common('jquery.min.js','js')?>"></script>
+<script type="text/javascript" src="<?=Assets::js('jquery.min.js')?>"></script>
 <!-- 全局js调用 -->
 <script type="text/javascript" src="<?=Assets::js('global.js')?>"></script>
 <script type="text/javascript" src="<?=Assets::js('spop.min.js')?>"></script>
 <!-- 当前页面使用插件的js -->
 <script type="text/javascript" src="<?=Assets::js('button.loading.js')?>"></script>
 <script type="text/javascript" src="<?=Assets::js('jquery.md5.js')?>"></script>
-<script type="text/javascript" src="<?=Assets::js('jquery.validate.min.js','js')?>"></script>
-<script type="text/javascript" src="<?=Assets::js('messages_zh.min.js','js')?>"></script>
-<script type="text/javascript" src="<?=Assets::js('socket.io.js','js')?>"></script>
+<script type="text/javascript" src="<?=Assets::js('jquery.validate.min.js')?>"></script>
+<script type="text/javascript" src="<?=Assets::js('messages_zh.min.js')?>"></script>
+<script type="text/javascript" src="<?=Assets::js('socket.io.js')?>"></script>
 <script type="text/javascript" src="<?=Assets::js('websocket.js')?>"></script>
 <!-- 当前页面独有的js -->
 <script type="text/javascript">
 $(function(){
-    websocket.join('<?=hotelHelper::getCompanyId();?>','company_admin_bind_wechat',{
-		qrcode_id:'<?=$admin_qrcode_id?>'
+    websocket.join('','company_admin_bind_wechat',{
+		qrcode_id:'<?=$qrcode_id?>'
 	});
     websocket.on('user_qrcode_info',function(response){
         if(response.subscribe == 0)

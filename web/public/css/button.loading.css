@@ -1,0 +1,77 @@
+.button-loading-hover-status{
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes button_loading_rotate {
+	from {
+		transform:rotate(0deg);
+		-ms-transform:rotate(0deg); 	/* IE 9 */
+		-moz-transform:rotate(0deg); 	/* Firefox */
+		-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+		-o-transform:rotate(0deg); 	/* Opera */
+	}
+
+	to {
+		transform:rotate(360deg);
+		-ms-transform:rotate(360deg); 	/* IE 9 */
+		-moz-transform:rotate(360deg); 	/* Firefox */
+		-webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+		-o-transform:rotate(360deg); 	/* Opera */
+	}
+}
+
+@-moz-keyframes button_loading_rotate /* Firefox */ {
+	from {
+		transform:rotate(0deg);
+		-ms-transform:rotate(0deg); 	/* IE 9 */
+		-moz-transform:rotate(0deg); 	/* Firefox */
+		-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+		-o-transform:rotate(0deg); 	/* Opera */
+	}
+
+	to {
+		transform:rotate(360deg);
+		-ms-transform:rotate(360deg); 	/* IE 9 */
+		-moz-transform:rotate(360deg); 	/* Firefox */
+		-webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+		-o-transform:rotate(360deg); 	/* Opera */
+	}
+
+}
+
+@-webkit-keyframes button_loading_rotate /* Safari 和 Chrome */ {
+	from {
+		transform:rotate(0deg);
+		-ms-transform:rotate(0deg); 	/* IE 9 */
+		-moz-transform:rotate(0deg); 	/* Firefox */
+		-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+		-o-transform:rotate(0deg); 	/* Opera */
+	}
+	
+	to {
+		transform:rotate(360deg);
+		-ms-transform:rotate(360deg); 	/* IE 9 */
+		-moz-transform:rotate(360deg); 	/* Firefox */
+		-webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+		-o-transform:rotate(360deg); 	/* Opera */
+	}
+
+}
+
+@-o-keyframes button_loading_rotate /* Opera */ {
+	from {
+		transform:rotate(0deg);
+		-ms-transform:rotate(0deg); 	/* IE 9 */
+		-moz-transform:rotate(0deg); 	/* Firefox */
+		-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+		-o-transform:rotate(0deg); 	/* Opera */
+	}
+
+	to {
+		transform:rotate(360deg);
+		-ms-transform:rotate(360deg); 	/* IE 9 */
+		-moz-transform:rotate(360deg); 	/* Firefox */
+		-webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+		-o-transform:rotate(360deg); 	/* Opera */
+	}
+}

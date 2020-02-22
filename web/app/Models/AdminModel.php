@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Exceptions\LoginFailedException;
+use App\Helper\Encrypt;
 
 class AdminModel extends Model
 {
@@ -22,6 +23,12 @@ class AdminModel extends Model
 	 * @var array
 	 */
 	protected $hidden = ['password','salt'];
+	
+	public function setPasswordAttribute($value)
+	{
+		$this->attributes['salt'] = Encrypt::random(32);
+		$this->attributes['password'] = Encrypt::password_hash($value.$this->attributes['salt']);
+	}
 	
 	/**
 	 * 使用用户名和密码验证登录

@@ -13,7 +13,7 @@
 
 
 
-Route::get('/index/login','IndexController@login');
+Route::match(['get','post'],'/index/login','IndexController@login');
 Route::get('/index/code','IndexController@code');
 
 Route::group(['middleware' => ['admin_auth']],function(){
