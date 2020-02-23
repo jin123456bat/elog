@@ -87,23 +87,23 @@ use App\Models\ConfigModel;
 										<div class="panel-body">
 											<div class="form-group col-md-10">
 												<label class="label col-md-2">阿里oss的host</label>
-												<input type="text" class="input_text col-md-7" name="alioss.host" value="<?=ConfigModel::get('alioss.host')?>" placeholder="">
+												<input type="text" class="input_text col-md-7" name="alioss%host" value="<?=ConfigModel::get('alioss.host')?>" placeholder="">
 											</div>
 											<div class="form-group col-md-10">
 												<label class="label col-md-2">阿里oss的endpoint</label>
-												<input type="text" class="input_text col-md-7" name="alioss.endpoint" value="<?=ConfigModel::get('alioss.endpoint')?>" placeholder="">
+												<input type="text" class="input_text col-md-7" name="alioss%endpoint" value="<?=ConfigModel::get('alioss.endpoint')?>" placeholder="">
 											</div>
 											<div class="form-group col-md-10">
 												<label class="label col-md-2">阿里oss的bucket</label>
-												<input type="text" class="input_text col-md-7" name="alioss.bucket" value="<?=ConfigModel::get('alioss.bucket')?>" placeholder="">
+												<input type="text" class="input_text col-md-7" name="alioss%bucket" value="<?=ConfigModel::get('alioss.bucket')?>" placeholder="">
 											</div>
 											<div class="form-group col-md-10">
 												<label class="label col-md-2">阿里oss的accessKeySecret</label>
-												<input type="text" class="input_text col-md-7" name="alioss.accessKeySecret" value="<?=ConfigModel::get('alioss.accessKeySecret')?>" placeholder="">
+												<input type="text" class="input_text col-md-7" name="alioss%accessKeySecret" value="<?=ConfigModel::get('alioss.accessKeySecret')?>" placeholder="">
 											</div>
 											<div class="form-group col-md-10">
 												<label class="label col-md-2">阿里oss的accessKeyId</label>
-												<input type="text" class="input_text col-md-7" name="alioss.accessKeyId" value="<?=ConfigModel::get('alioss.accessKeyId')?>" placeholder="">
+												<input type="text" class="input_text col-md-7" name="alioss%accessKeyId" value="<?=ConfigModel::get('alioss.accessKeyId')?>" placeholder="">
 											</div>
 										</div>
 									</div>
