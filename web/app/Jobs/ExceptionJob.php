@@ -7,9 +7,9 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Yiche\Oss\Services\OssService;
 use App\Models\ExceptionModel;
 use App\Events\AfterExceptionTrigger;
+use App\Models\FileModel;
 
 class ExceptionJob implements ShouldQueue
 {
@@ -54,11 +54,9 @@ class ExceptionJob implements ShouldQueue
         	//计算消息内容
         	$file = storage_path('error').'/'.$this->_data['md5'].'.html';
         	file_put_contents($file, $this->_data['html']);
-        	$ossService = new OssService();
-        	$oss_file = $ossService->ossUpload($file,true);
+        	$file_model = FileModel::upload($file);
         	unlink($file);
-        	
-        	$this->_data['url'] = $oss_file->url;
+        	$this->_data['url'] = $file_model->url;
         	
         	//记录到数据库
         	$exception_log = new ExceptionModel($this->_data);
@@ -68,8 +66,6 @@ class ExceptionJob implements ShouldQueue
         }
         catch (\Exception $e)
         {
-            var_dump($e);
-            exit();
         }
     }
 }

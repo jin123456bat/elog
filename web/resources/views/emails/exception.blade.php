@@ -35,10 +35,7 @@
 	
 ###Session:
 @if (!empty($data['session']))
-@foreach(json_decode($data['session'],true) as $key=>$value)
-	{{ $key }} => @if (is_array($value)){{ implode($value) }}@else{{ $value }}@endif
-
-@endforeach
+{{ $data['session'] }}
 @endif
 	
 @endcomponent

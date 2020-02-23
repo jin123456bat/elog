@@ -208,7 +208,7 @@ var datatables = function(argments){
 						argments.afterTableLoaded(argments.table,response);
 					}
 					
-					floatright();
+					//floatright();
 					
 					$_drawal++;
 				}

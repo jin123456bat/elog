@@ -7,6 +7,7 @@ use App\Models\MenuModel;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\AdminModel;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -65,7 +66,7 @@ class AppServiceProvider extends ServiceProvider
     	
     	// 获取选中的菜单
     	$current = MenuModel::where(array(
-    		'link' => Request::path()
+    		'link' => implode('/', array_slice(explode('/', Request::path()), 0,2))
     	))->first();
     	
     	// 获取选中的3级菜单

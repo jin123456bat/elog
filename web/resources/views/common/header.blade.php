@@ -1,11 +1,12 @@
 <?php
 use App\Helper\Assets;
+use App\Models\ConfigModel;
 ?>
 <header>
 	<div class="nav">
 		<div class="pull-left">
-			<div class="logo">MIGEE</div>
-			<div class="version">集团方</div>
+			<div class="logo"><?=ConfigModel::get('name')?></div>
+			<div class="version">1.0</div>
 		</div>
 		<div class="center">
 
@@ -19,16 +20,8 @@ use App\Helper\Assets;
 				<a href="<?=url('index/logout')?>"> <i class="iconfont icon-log-out"></i> 退出
 				</a>
 			</div>
-			<div class="message">
-				<a href="#"> <i class="iconfont icon-message2"></i> 消息
-				</a>
-			</div>
-			<div class="help">
-				<a href="http://help.migee.net" target="__blank"> <i class="iconfont icon-message2"></i> 帮助文档
-				</a>
-			</div>
 			<div class="admin">
-				<a href="<?=url('admin/mine')?>"> <img class="image circle" src="<?=!empty($user['gravatar_url']) ? $user['gravatar_url'] : ''?>" onerror="this.src='<?=Assets::image('default_gravatar.png')?>';">
+				<a> <img class="image circle" src="<?=!empty($user['gravatar_url']) ? $user['gravatar_url'] : ''?>" onerror="this.src='<?=Assets::image('default_gravatar.png')?>';">
 					<?=$user['username']?>
 				</a>
 			</div>

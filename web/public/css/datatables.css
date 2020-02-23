@@ -34,6 +34,7 @@
 	text-align: left;
 	word-wrap: break-word;
 	word-break: break-all;
+	    table-layout: fixed;
 }
 
 .table tbody tr:hover {
@@ -66,7 +67,6 @@
 	line-height: 1.42857143;
 	display: table-cell;
 	font-size: 12px;
-	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	text-align: center;

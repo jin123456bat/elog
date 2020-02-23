@@ -19,7 +19,7 @@ class Controller extends BaseController
     	$this->request = $request;
     }
     
-    function database(Request $request,$query,array $column = [])
+    function database(Request $request,$query,array $column = [],$callback = null)
     {
     	$start = $request->input('start');
     	$length = $request->input('length');
@@ -42,8 +42,6 @@ class Controller extends BaseController
     	// 查询字段
     	$columns = $request->input('columns');
     	$columns = array_column($columns, 'data');
-    	
-    	
     	foreach (array_unique(array_filter($columns)) as $item)
     	{
     		if (isset($column[$item]))
@@ -56,20 +54,12 @@ class Controller extends BaseController
     		}
     	}
     	
-    	// 过滤
-    	$keywords = $request->input('keywords');
-    	if(! empty($keywords))
+    	if (is_callable($callback))
     	{
-    		$query->where(function($query)use($keywords){
-    			$query->whereOr('username','like','%'.$keywords.'%')
-    			->whereOr('realname','like','%'.$keywords.'%')
-    			->whereOr('email','like','%'.$keywords.'%')
-    			->whereOr('mobile','like','%'.$keywords.'%');
-    		});
+    		$query = $callback($query);
     	}
     	
-    	// 			// 计算数据
-    	$data = $query->paginate($length);
+    	$data = $query->paginate($length,['*'],'page',$page);
     	
     	return [
     		'draw' => $request->input('draw'),

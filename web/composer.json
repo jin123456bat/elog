@@ -6,7 +6,8 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": ["app/Helper/Functions.php"]
     },
     "autoload-dev": {
         "psr-4": {
@@ -38,6 +39,7 @@
     },
     "require": {
         "php": ">=7.0.0",
+        "aliyuncs/oss-sdk-php": "^2.3",
         "fideloper/proxy": "~3.3",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.5.*",

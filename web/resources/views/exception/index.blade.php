@@ -27,43 +27,35 @@ use App\Helper\Assets;
 			</div>
 			<div class="body">
 				<div class="white-block">
-					<div class="top-tips">
-						<div class="top-tips-title">操作提示</div>
-						<div class="top-tips-body">
-							<p>管理员列表</p>
-						</div>
-					</div>
-					<div class="line">
-						<a class="button button-outline-red button-small" href="<?=url('admin/create')?>" title="create_admin">添加管理员</a>
-						<form id="search" class="col-md-5 pull-right" style="display: inline-block;">
-							<button class="button pull-right primary">搜索</button>
-							<input type="text" placeholder="用户名/真实姓名/邮箱/手机号码" class="input_text pull-right col-md-3">
+					<div class="line pull-left">
+						<form id="search" class="col-md-5 pull-left">
+							<input type="text" placeholder="项目/文件/消息/类/请求地址" class="input_text col-md-3">
+							<button class="button primary">搜索</button>
 						</form>
 					</div>
 					<div class="tablebox">
-						<table id="table" class="table" data-ajax-url="<?=url('admin/index')?>">
+						<table id="table" class="table" data-ajax-url="<?=url('exception/index')?>">
 							<thead>
 								<tr>
-									<th>
+									<th width="50px">
 										<input type="checkbox" class="all_checked">
 									</th>
-									<th>头像</th>
-									<th>用户名</th>
-									<th>真实姓名</th>
-									<th>邮箱</th>
-									<th>手机号码</th>
-									<th>微信</th>
-									<th>是否超管</th>
-									<th>创建时间</th>
-									<th>锁定状态</th>
-									<th width="300px">操作</th>
+									<th width="100px">项目</th>
+									<th width="150px">时间</th>
+									<th width="100px">错误码</th>
+									<th>文件</th>
+									<th width="50px">行</th>
+									<th>消息</th>
+									<th>类</th>
+									<th>请求方式</th>
+									<th width="100px">操作</th>
 								</tr>
 							</thead>
 							<tbody></tbody>
 							<tfoot>
 								<tr>
 									<td colspan="2"></td>
-									<td id="split_page" colspan="10"></td>
+									<td id="split_page" colspan="8"></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -100,57 +92,59 @@ var table = datatables({
 			return '<input type="checkbox" name="id[]" value="'+data+'">';
 		}
 	},{
-		data:'gravatar',
-		render:function(data,full){
-			if(data!=null)
-			{
-				return '<img class="image circle" src="'+data+'" onerror="this.src=\'<?=Assets::image('default_gravatar.png')?>\';">';
-			}
-			return '';
-		}
-	},{
-		data:'username',
-	},{
-		data:'realname',
-	},{
-		data:'email',
-	},{
-		data:'mobile',
-	},{
-		data:'wechat_openid',
-		render:function(data,full){
-			return data==null?'未绑定':'已绑定';
-		}
-	},{
-		data:'issupper',
-		render:function(data,full){
-			if(data = 1)
-			{
-				return '<div class="label primary">是</div>';
-			}
-			else
-			{
-				return '<div class="label disable">否</div>';
-			}
-		}
+		data:'project',
 	},{
 		data:'created_at',
 	},{
-		data:'islock',
+		data:'code',
+	},{
+		data:'file',
+	},{
+		data:'line',
+	},{
+		data:'message',
+		render:function(data){
+			return data==null?'':data;
+		}
+	},{
+		data:'exception_class',
+		render:function(data){
+			return data==null?'':data;
+		}
+	},{
+		data:'request_url',
 		render:function(data,full){
-			return data==1?'已锁定':'正常';
+			if(data == null)
+			{
+				return '';
+			}
+			
+			if(full.method == null)
+			{
+				return data;
+			}
+			return full.method+' '+data;
 		}
 	},{
 		data:'id',
 		render:function(data,full){
 			content = '';
-			content += '<a class="button button-xs edit" title="update_admin" data-id="'+full.id+'">查看/编辑</a>';
-			content += '<a class="button button-xs remove" title="delete_admin" data-id="'+full.id+'">删除</a>';
+			if(full.url != null)
+			{
+				content += '<a class="button button-xs detail" data-url="'+full.url+'">明细</a>';
+			}
 			return content;
 		}
+	},{
+		data:'method',
+		visible:false,
+	},{
+		data:'url',
+		visible:false,
 	}],
 	sort:{
 		created_at:'desc',
+		id:'desc',
 	},
 	pagesize:10,
 	onRowLoaded:function(row){
@@ -163,24 +157,8 @@ $('#search').on('submit',function(){
 	return false;
 });
 
-$('table').on('click','.edit',function(){
-	var id = $(this).data('id');
-	window.location = '<?=url('admin/update')?>/'+id;
-}).on('click','.remove',function(){
-	$.post('<?=url('admin/delete')?>',{id:$(this).data('id')},function(response){
-		if(response.code==1)
-		{
-			table.reload();
-		}
-		spop({
-		    template: response.message,
-		    style: response.code==1?'success':'error',
-		    autoclose: 3000,
-		    position:'bottom-right',
-		    icon:true,
-		    group:false,
-		});
-	});
+$('table').on('click','.detail',function(){
+	window.open($(this).data('url'));
 });
 </script>
 </body>

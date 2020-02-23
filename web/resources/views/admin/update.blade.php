@@ -1,5 +1,6 @@
 <?php
 use App\Helper\Assets;
+use Illuminate\Support\Facades\Request;
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +37,7 @@ use App\Helper\Assets;
 						</div>
 					</div>
 					<div class="line"></div>
-					<form class="form" id="form" method="post" action="<?=url('admin/create')?>">
+					<form class="form" id="form" method="post" action="<?=url('admin/update')?>/<?=Request::route('id')?>">
 						<div class="panel col-md-7 center-block">
 							<div class="panel-head">
 								<div class="panel-title">基础信息</div>
@@ -44,29 +45,29 @@ use App\Helper\Assets;
 							<div class="panel-body">
 								<div class="form-group col-md-10">
 									<label class="label col-md-2">用户名</label>
-									<input type="text" class="input_text col-md-7" name="username" value="" placeholder="登陆用户名">
+									<input type="text" class="input_text col-md-7" name="username" value="<?=$admin['username']?>" placeholder="登陆用户名" readonly="readonly">
 								</div>
 								<div class="form-group col-md-10">
 									<label class="label col-md-2">真实姓名</label>
-									<input type="text" class="input_text col-md-7" name="realname" value="" placeholder="真实姓名">
+									<input type="text" class="input_text col-md-7" name="realname" value="<?=$admin['realname']?>" placeholder="真实姓名">
 								</div>
 								<div class="form-group col-md-10">
 									<label class="label col-md-2">邮箱</label>
-									<input type="text" class="input_text col-md-7" name="email" value="" placeholder="邮箱">
+									<input type="text" class="input_text col-md-7" name="email" value="<?=$admin['email']?>" placeholder="邮箱">
 								</div>
 								<div class="form-group col-md-10">
 									<label class="label col-md-2">手机号码</label>
-									<input type="text" class="input_text col-md-7" name="mobile" value="" placeholder="手机号码">
+									<input type="text" class="input_text col-md-7" name="mobile" value="<?=$admin['mobile']?>" placeholder="手机号码">
 								</div>
 								<div class="form-group col-md-10">
-									<label class="label col-md-2">登陆密码</label>
-									<input type="text" class="input_text col-md-7" name="password" placeholder="登陆密码">
+									<label class="label col-md-2">新密码</label>
+									<input type="text" class="input_text col-md-7" name="password" placeholder="新密码">
 								</div>
 								<div class="form-group col-md-10">
 									<label class="label col-md-2">锁定状态</label>
 									<select class="select col-md-7" name="islock">
-										<option value="0">未锁定</option>
-										<option value="1">已锁定</option>
+										<option value="0" <?=$admin['islock']==0?"selected":''?>>未锁定</option>
+										<option value="1" <?=$admin['islock']==1?"selected":''?>>已锁定</option>
 									</select>
 								</div>
 							</div>
@@ -80,8 +81,8 @@ use App\Helper\Assets;
 								<div class="form-group">
 									<label class="col-md-2 label">是否超管</label>
 									<select class="col-md-7 select" name="issupper">
-										<option value="0">否</option>
-										<option value="1">是</option>
+										<option value="0" <?=$admin['issupper']==0?"selected":''?>>否</option>
+										<option value="1" <?=$admin['issupper']==1?"selected":''?>>是</option>
 									</select>
 								</div>
 							</div>
@@ -156,12 +157,6 @@ $(function(){
 		return false;
 	});
 
-	//中文
-	jQuery.validator.addMethod("chs", function(value, element) {
-		var tel = /^[\u4E00-\u9FA5]{1,6}$/;
-		return this.optional(element) || (tel.test(value));
-	}, "请输入正确的中文名称");
-
 	// 手机号
 	jQuery.validator.addMethod("mobile", function(value, element) {
 		var tel = /^1[34578]\d{9}$/;
@@ -176,7 +171,6 @@ $(function(){
 			},
 			realname : {
 				required : true,
-				chs : true,
 			},
 			email : {
 				required : true,
@@ -185,9 +179,6 @@ $(function(){
 			mobile : {
 				required : true,
 				mobile : true,
-			},
-			password : {
-				required : true,
 			},
 		},
 		errorPlacement : function(error, element) {

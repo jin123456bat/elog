@@ -29,5 +29,8 @@ Route::post('index/login','IndexController@login');
 Route::group(['middleware'=>[]],function(){
 	Route::post('admin/index','AdminController@index');
 	Route::post('admin/create','AdminController@create');
-	Route::post('admin/update','AdminController@update');
+	Route::post('admin/update/{id}','AdminController@update');
+	Route::post('admin/delete','AdminController@delete');
+	
+	Route::post('exception/index','ExceptionController@index');
 });

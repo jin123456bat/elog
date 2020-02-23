@@ -1,14 +1,13 @@
 <?php
 namespace App\Exceptions;
-
 use \Exception;
 
 /**
- * 尚未登录抛出的异常
+ * 邮件发送失败异常
  * @author jin12
  *
  */
-class NotLoginException extends Exception
+class EmailSendFailedException extends Exception
 {
 }
 

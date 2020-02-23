@@ -233,7 +233,7 @@ window.onerror = function(message, url, line, position, trace) {
 	    os : BrowserMatch.OS
 	};
 	
-	$.post('/common/component/web_error_report',error,function(){});
+//	$.post('/common/component/web_error_report',error,function(){});
 }
 
 function lpad(num, n) {  
