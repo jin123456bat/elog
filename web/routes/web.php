@@ -20,8 +20,9 @@ Route::group(['middleware' => ['admin_auth']],function(){
 	Route::get('/', 'IndexController@index');
 	Route::get('admin/index','AdminController@index');
 	Route::get('admin/create','AdminController@create');
-	Route::get('admin/update/{id}','AdminController@update');
+	Route::get('admin/update','AdminController@update');
 	
 	
 	Route::get('exception/index','ExceptionController@index');
+	Route::get('log/common/index','CommonLogController@index');
 });

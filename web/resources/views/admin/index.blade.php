@@ -63,7 +63,7 @@ use App\Helper\Assets;
 							<tfoot>
 								<tr>
 									<td colspan="2"></td>
-									<td id="split_page" colspan="10"></td>
+									<td id="split_page" colspan="9"></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -165,7 +165,7 @@ $('#search').on('submit',function(){
 
 $('table').on('click','.edit',function(){
 	var id = $(this).data('id');
-	window.location = '<?=url('admin/update')?>/'+id;
+	window.location = '<?=url('admin/update')?>?id='+id;
 }).on('click','.remove',function(){
 	$.post('<?=url('admin/delete')?>',{id:$(this).data('id')},function(response){
 		if(response.code==1)

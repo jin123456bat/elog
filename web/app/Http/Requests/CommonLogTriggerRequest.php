@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LogTriggerRequest extends FormRequest
+class CommonLogTriggerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,10 @@ class LogTriggerRequest extends FormRequest
     {
         return [
             'project' => 'required|string',
-        	'message' => 'required|string',
+        	'log' => 'required|array',
+        	'log.*level' => 'required',
+        	'log.*message' => 'required|string',
+        	'log.*context' => 'array'
         ];
     }
 }

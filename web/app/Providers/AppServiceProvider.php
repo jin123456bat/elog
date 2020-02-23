@@ -66,7 +66,8 @@ class AppServiceProvider extends ServiceProvider
     	
     	// 获取选中的菜单
     	$current = MenuModel::where(array(
-    		'link' => implode('/', array_slice(explode('/', Request::path()), 0,2))
+    		//'link' => implode('/', array_slice(explode('/', Request::path()), 0,2))
+    		'link' => Request::path()
     	))->first();
     	
     	// 获取选中的3级菜单

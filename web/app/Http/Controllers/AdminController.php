@@ -49,8 +49,10 @@ class AdminController extends Controller
 		return new Success();
 	}
 	
-	function update($id)
+	function update()
 	{
+		$id = $this->request->input('id');
+		
 		$admin = AdminModel::findOrFail($id);
 		if ($this->request->method() == Request::METHOD_POST)
 		{

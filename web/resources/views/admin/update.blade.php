@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Request;
 						</div>
 					</div>
 					<div class="line"></div>
-					<form class="form" id="form" method="post" action="<?=url('admin/update')?>/<?=Request::route('id')?>">
+					<form class="form" id="form" method="post" action="<?=url('admin/update')?>?id=<?=Request::input('id')?>">
 						<div class="panel col-md-7 center-block">
 							<div class="panel-head">
 								<div class="panel-title">基础信息</div>
