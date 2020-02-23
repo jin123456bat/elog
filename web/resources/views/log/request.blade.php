@@ -29,12 +29,12 @@ use App\Helper\Assets;
 				<div class="white-block">
 					<div class="line pull-left">
 						<form id="search" class="col-md-5 pull-left">
-							<input type="text" placeholder="项目/等级/消息" class="input_text col-md-3">
+							<input type="text" placeholder="请求地址" class="input_text col-md-3">
 							<button class="button primary">搜索</button>
 						</form>
 					</div>
 					<div class="tablebox">
-						<table id="table" class="table" data-ajax-url="<?=url('log/common/index')?>">
+						<table id="table" class="table" data-ajax-url="<?=url('log/request/index')?>">
 							<thead>
 								<tr>
 									<th width="50px">
@@ -42,16 +42,24 @@ use App\Helper\Assets;
 									</th>
 									<th width="100%">项目</th>
 									<th width="100%">时间</th>
-									<th width="100%">等级</th>
-									<th width="100%">消息</th>
-									<th width="100%">上下文</th>
+									<th width="100%">请求方式</th>
+									<th width="100%">请求参数</th>
+									<th width="100%">请求头</th>
+									<th width="100%">请求cookie</th>
+									<th width="100%">请求session</th>
+									<th width="100%">SERVER</th>
+									<th width="100%">IP</th>
+									<th width="100%">响应</th>
+									<th width="100%">执行时间</th>
+									<th width="100%">内存占用</th>
+									<th width="100%">性能分析</th>
 								</tr>
 							</thead>
 							<tbody></tbody>
 							<tfoot>
 								<tr>
 									<td colspan="2"></td>
-									<td id="split_page" colspan="4"></td>
+									<td id="split_page" colspan="12"></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -92,11 +100,41 @@ var table = datatables({
 	},{
 		data:'created_at',
 	},{
-		data:'level',
+		data:'url',
+		render:function(data,full){
+			return full.method + ' ' + data;
+		}
 	},{
-		data:'message',
+		data:'params',
 	},{
-		data:'context',
+		data:'header',
+	},{
+		data:'cookie',
+	},{
+		data:'session',
+	},{
+		data:'server',
+	},{
+		data:'ip',
+	},{
+		data:'response',
+	},{
+		data:'exectime',
+	},{
+		data:'memory',
+	},{
+		data:'xhprof',
+		render:function(data,full){
+			content = '';
+			if(data != null)
+			{
+				content += '<a class="button button-xs detail" data-url="'+data+'">性能分析</a>';
+			}
+			return content;
+		}
+	},{
+		data:'method',
+		visible:false,
 	}],
 	sort:{
 		created_at:'desc',

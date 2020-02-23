@@ -29,12 +29,12 @@ use App\Helper\Assets;
 				<div class="white-block">
 					<div class="line pull-left">
 						<form id="search" class="col-md-5 pull-left">
-							<input type="text" placeholder="项目/等级/消息" class="input_text col-md-3">
+							<input type="text" placeholder="SQL/请求地址" class="input_text col-md-3">
 							<button class="button primary">搜索</button>
 						</form>
 					</div>
 					<div class="tablebox">
-						<table id="table" class="table" data-ajax-url="<?=url('log/common/index')?>">
+						<table id="table" class="table" data-ajax-url="<?=url('log/sql/index')?>">
 							<thead>
 								<tr>
 									<th width="50px">
@@ -42,16 +42,22 @@ use App\Helper\Assets;
 									</th>
 									<th width="100%">项目</th>
 									<th width="100%">时间</th>
-									<th width="100%">等级</th>
-									<th width="100%">消息</th>
-									<th width="100%">上下文</th>
+									<th width="100%">SQL</th>
+									<th width="100%">执行时间</th>
+									<th width="100%">请求方式</th>
+									<th width="100%">请求参数</th>
+									<th width="100%">请求头</th>
+									<th width="100%">请求cookie</th>
+									<th width="100%">请求session</th>
+									<th width="100%">SERVER</th>
+									<th width="100%">IP</th>
 								</tr>
 							</thead>
 							<tbody></tbody>
 							<tfoot>
 								<tr>
 									<td colspan="2"></td>
-									<td id="split_page" colspan="4"></td>
+									<td id="split_page" colspan="10"></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -92,11 +98,29 @@ var table = datatables({
 	},{
 		data:'created_at',
 	},{
-		data:'level',
+		data:'sql_string',
 	},{
-		data:'message',
+		data:'exectime',
 	},{
-		data:'context',
+		data:'url',
+		render:function(data,full){
+			return full.method + ' ' + data;
+		}
+	},{
+		data:'params',
+	},{
+		data:'header',
+	},{
+		data:'cookie',
+	},{
+		data:'session',
+	},{
+		data:'server',
+	},{
+		data:'ip',
+	},{
+		data:'method',
+		visible:false,
 	}],
 	sort:{
 		created_at:'desc',
@@ -111,10 +135,6 @@ var table = datatables({
 $('#search').on('submit',function(){
 	table.search($(this).find('input').val());
 	return false;
-});
-
-$('table').on('click','.detail',function(){
-	window.open($(this).data('url'));
 });
 </script>
 </body>

@@ -22,6 +22,9 @@ Route::post('exception','ExceptionController@trigger');
 
 //日志上报
 Route::post('log/common','CommonLogController@trigger');
+Route::post('log/request','RequestLogController@trigger');
+Route::post('log/crontab','CrontabLogController@trigger');
+Route::post('log/sql','SqlLogController@trigger');
 
 //登录接口
 Route::post('index/login','IndexController@login');
@@ -34,4 +37,7 @@ Route::group(['middleware'=>[]],function(){
 	
 	Route::post('exception/index','ExceptionController@index');
 	Route::post('log/common/index','CommonLogController@index');
+	Route::post('log/request/index','RequestLogController@index');
+	Route::post('log/crontab/index','CrontabLogController@index');
+	Route::post('log/sql/index','SqlLogController@index');
 });

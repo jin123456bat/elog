@@ -23,9 +23,9 @@ class Json extends Response
 		if ($content instanceof Jsonable) {
 			return $content->toJson();
 		} elseif ($content instanceof Arrayable) {
-			return json_encode($content->toArray(),JSON_UNESCAPED_UNICODE);
+			return json_encode($content->toArray(),JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 		}
 		
-		return json_encode($content);
+		return json_encode($content,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 	}
 }
