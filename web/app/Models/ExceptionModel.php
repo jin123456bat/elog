@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExceptionModel extends Model
 {
+	const CACHE_LIST_KEY = 'exception_id_list';
+	
     /**
      * 与模型关联的数据表
      * 

@@ -1,0 +1,81 @@
+.tab .tab-header{
+	width: 100%;
+    border-bottom: 1px rgba(98, 179, 255, 1) solid;
+    padding: 0px;
+    height: 37px;
+}
+
+.tab.tab-grey .tab-header{
+	border-bottom: 1px #ccc solid;
+}
+
+.tab .tab-header .tab-title{
+	color: rgba(107, 107, 107, 1);
+	border-color: rgba(98, 179, 255, 1);
+    border-style: solid;
+    text-decoration: none;
+    border-width: 1px;
+    text-align: center;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 40px;
+    padding: 0 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: all ease 0.25s;
+    position: relative;
+    margin: 0px 3px;
+    border-bottom: none;
+    height: 37px;
+    display: inline-block;
+}
+
+.tab.tab-grey .tab-header .tab-title{
+	border-color: #ccc;
+}
+
+.tab .tab-header .tab-title:first-child{
+	margin-left:0px;
+}
+
+.tab .tab-header .tab-title.active{
+	background-color: rgba(98, 179, 255, 1);
+    color: #FFFFFF;
+}
+
+.tab.tab-grey .tab-header .tab-title.active{
+	background-color: #ccc;
+}
+
+.tab .tab-header .tab-title:hover{
+    background-color: rgba(98, 179, 255, 1);
+    color: #FFFFFF;
+}
+
+.tab.tab-grey .tab-header .tab-title:hover{
+    background-color: #ccc;
+}
+
+.tab .tab-body .tab-page{
+	display:none;
+}
+
+.tab .tab-body .tab-page.active{
+	display:block;
+}
+
+.tab .tab-header .tab-title .tab-title-label{
+	position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+}

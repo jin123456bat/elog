@@ -11,6 +11,9 @@ use App\Models\ExceptionModel;
 
 class AfterExceptionTrigger
 {
+	/**
+	 * @var ExceptionModel
+	 */
 	public $_exception_log;
 	
     use Dispatchable, InteractsWithSockets, SerializesModels;

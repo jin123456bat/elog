@@ -28,4 +28,5 @@ Route::group(['middleware' => ['admin_auth']],function(){
 	Route::get('log/request/index','RequestLogController@index');
 	Route::get('log/crontab/index','CrontabLogController@index');
 	Route::get('log/sql/index','SqlLogController@index');
+	Route::get('config/index','ConfigController@index');
 });

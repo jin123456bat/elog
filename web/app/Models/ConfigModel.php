@@ -14,6 +14,8 @@ class ConfigModel extends Model
 	
 	public $timestamps = false;
 	
+	protected $fillable = ['c_value'];
+	
 	public static function get($key)
 	{
 		$count = 0;
@@ -34,4 +36,14 @@ class ConfigModel extends Model
 		}
 	}
 	
+	public static function set(array $data)
+	{
+		foreach ($data as $key => $value)
+		{
+			$config = self::find($key);
+			$config->update([
+				'c_value' => $value
+			]);
+		}
+	}
 }
