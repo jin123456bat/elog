@@ -10,7 +10,13 @@ class ConfigController extends Controller
 		if ($this->request->method() == Request::METHOD_POST)
 		{
 			$data = $this->request->all([
-				'name'
+				'name',
+				'exception_file_storage',
+				'alioss.host',
+				'alioss.endpoint',
+				'alioss.bucket',
+				'alioss.accessKeySecret',
+				'alioss.accessKeyId',
 			]);
 			
 			ConfigModel::set($data);
