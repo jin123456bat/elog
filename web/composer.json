@@ -6,7 +6,8 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": ["app/Helper/Functions.php"]
     },
     "autoload-dev": {
         "psr-4": {
@@ -31,26 +32,19 @@
     "license": "MIT",
     "name": "laravel/laravel",
     "repositories": {
-        "0": {
-            "type": "vcs",
-            "url": "git@code.lrwanche.com:yiche/config.git"
-        },
-        "1": {
-            "type": "vcs",
-            "url": "git@code.lrwanche.com:yiche/oss.git"
-        },
         "packagist": {
             "type": "composer",
             "url": "https://mirrors.aliyun.com/composer/"
         }
     },
     "require": {
-        "yiche/oss": "1.6",
-        "guzzlehttp/guzzle": "^6.3",
+        "php": ">=7.0.0",
+        "aliyuncs/oss-sdk-php": "^2.3",
         "fideloper/proxy": "~3.3",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "php": ">=7.0.0"
+        "simplesoftwareio/simple-qrcode": "^2.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

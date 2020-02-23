@@ -1,0 +1,77 @@
+@CHARSET "UTF-8";
+
+.panel {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	margin-top: 15px;
+	font-size: 14px;
+}
+
+.panel .panel-head {
+	border: 1px solid #ddd;
+	background-image: linear-gradient(to bottom, #f5f5f5 0, #e8e8e8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5',
+		endColorstr='#ffe8e8e8', GradientType=0);
+	background-repeat: repeat-x;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5),
+		to(#e8e8e8));
+	background-image: -webkit-linear-gradient(top, #f5f5f5 0, #e8e8e8 100%);
+	background-image: -o-linear-gradient(top, #f5f5f5 0, #e8e8e8 100%);
+	color: #333;
+	background-color: #f5f5f5;
+	border-color: #ddd;
+	padding: 5px 15px;
+	border-bottom: 1px solid transparent;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	position: relative;
+}
+
+.panel .panel-head .panel-title {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	color: #333;
+	line-height: 22px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.panel .panel-head .panel-more {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	color: #333;
+	line-height: 22px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	text-decoration: none;
+}
+
+.panel .panel-head .panel-more:hover {
+	color: rgba(41, 161, 177, 1);
+}
+
+.panel .panel-head .panel-tools {
+	bottom: 4px;
+	height: 25px;
+	right: 15px;
+	position: absolute;
+}
+
+.panel .panel-head .panel-tools .panel-tools-input {
+	height: 25px;
+	outline: none;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	color: #555;
+	line-height: 1.42857143;
+	padding: 0px 5px;
+	font-size: 14px;
+}
+
+.panel .panel-body {
+	padding: 15px;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+}

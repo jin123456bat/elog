@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Yiche\Config\Models\SapiConfig;
 use App\Models\ExceptionModel;
 
 class ExceptionReport extends Mailable implements ShouldQueue
@@ -15,14 +14,17 @@ class ExceptionReport extends Mailable implements ShouldQueue
     
     private $_data;
     
+    private $_email;
+    
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(ExceptionModel $exception_log)
+    public function __construct(ExceptionModel $exception_log,string $email)
     {
     	$this->_data = $exception_log;
+    	$this->_email = $email;
     }
 
     /**
@@ -32,10 +34,9 @@ class ExceptionReport extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        $email = SapiConfig::getConfigValue('ERROR_NOTIFY_MAIL');
-        if (!empty($email))
+        if (!empty($this->_email))
         {
-        	return $this->to($email)->markdown('emails.exception_report')->with([
+        	return $this->to(explode(',', $this->_email))->markdown('emails.exception')->with([
             	'data' => $this->_data,
             ]);
         }

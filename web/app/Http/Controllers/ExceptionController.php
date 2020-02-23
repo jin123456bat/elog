@@ -4,6 +4,8 @@ use App\Http\Response\Success;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExceptionTriggerRequest;
 use App\Jobs\ExceptionJob;
+use App\Models\ExceptionModel;
+use App\Http\Response\Json;
 
 class ExceptionController extends Controller
 {
@@ -39,5 +41,29 @@ class ExceptionController extends Controller
 		dispatch(new ExceptionJob($data));
 		
 		return new Success('上传成功');
+	}
+	
+	function index(Request $request)
+	{
+		if ($request->method() == Request::METHOD_POST)
+		{
+			return new Json($this->database($request, ExceptionModel::query(),[],function($query)use($request){
+				$keywords = trim($request->input('keywords'));
+				if(!empty($keywords))
+				{
+					$query->where(function($query)use($keywords){
+						$query->orWhere('project','like','%'.$keywords.'%')
+						->orWhere('file','like','%'.$keywords.'%')
+						->orWhere('message','like','%'.$keywords.'%')
+						->orWhere('request_url','like','%'.$keywords.'%');
+					});
+				}
+				return $query;
+			}));
+		}
+		else if ($request->method() == Request::METHOD_GET)
+		{
+			return view('exception.index');
+		}
 	}
 }
