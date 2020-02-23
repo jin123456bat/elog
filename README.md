@@ -1,3 +1,21 @@
+## 安装
+
+1、配置你的php，composer
+
+2、配置基本信息在`.env`文件中
+
+1. mysql
+2. email 用于发送异常邮件，可选
+3. redis，用于队列，可选
+
+3、执行`composer update`
+
+4、在项目根目录下执行命令，生成数据库结构
+
+`php artisan migrate`
+
+
+
 ## 记录信息
 
 通过http请求的方式来记录信息
